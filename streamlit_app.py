@@ -23,7 +23,7 @@ pd_df = my_dataframe.to_pandas()
 # Display the DataFrame in Streamlit
 st.dataframe(pd_df)
 # Stop execution
-#st.stop()
+st.stop()
 
 
 ingredients_list =st.multiselect(
