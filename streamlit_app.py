@@ -21,7 +21,7 @@ my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT
 # Convert the Snowpark DataFrame to a Pandas DataFrame
 pd_df = my_dataframe.to_pandas()
 # Display the DataFrame in Streamlit
-#st.dataframe(pd_df)
+st.dataframe(pd_df)
 # Stop execution
 #st.stop()
 
