@@ -21,9 +21,9 @@ my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT
 # Convert the Snowpark DataFrame to a Pandas DataFrame
 pd_df = my_dataframe.to_pandas()
 # Display the DataFrame in Streamlit
-st.dataframe(pd_df)
+#st.dataframe(pd_df)
 # Stop execution
-st.stop()
+#st.stop()
 
 
 ingredients_list =st.multiselect(
@@ -36,10 +36,12 @@ if ingredients_list:
     
 
     ingredients_string =' '
-
+    
     
     for fruit_chosen in ingredients_list:
             ingredients_string += fruit_chosen + ' '
+            search_on=pd_df. loc [pd_df ['FRUIT_NAME'] = fruit_chosen, 'SEARCH_ON'].iloc [0]
+            st.write( 'The search value for ', fruit_chosen,' is ', search_on, '.')
     #st.write(ingredients_string)
 
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients , name_on_order)
@@ -52,6 +54,3 @@ if ingredients_list:
     if time_to_insert:
         session.sql(my_insert_stmt).collect()
         st.success(f'Your Smoothie is ordered, {name_on_order}!', icon="✅")
-
-
-
